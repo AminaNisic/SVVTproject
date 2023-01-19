@@ -142,7 +142,7 @@ class ExternalLinks {
 		webDriver.switchTo().window(home);
 		Thread.sleep(3000);
 		
-		
+		//write them as separate tests?
 	}
 	
 
