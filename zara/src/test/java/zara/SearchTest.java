@@ -15,6 +15,7 @@ import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -27,8 +28,10 @@ class SearchTest {
 	@BeforeAll
 	static void setUpBeforeClass() throws Exception {
 		System.setProperty("webdriver.chrome.driver", "C:\\Users\\niimi\\chromedriver.exe");
-		webDriver = new ChromeDriver();
-		baseUrl = "https://www.zara.com/ba/en/";
+		ChromeOptions options = new ChromeOptions();
+		options.addArguments("--start-maximized");
+		baseUrl="https://www.zara.com/ba/en/";
+		webDriver = new ChromeDriver(options);
 		wait = new WebDriverWait(webDriver, Duration.ofSeconds(30));
 	}
 	
@@ -49,7 +52,6 @@ class SearchTest {
 	@Test
 	void testSearch() throws InterruptedException {
 		webDriver.get(baseUrl);
-		webDriver.manage().window().maximize();
 		//Thread.sleep(2000);
 		webDriver.findElement(By.xpath("/html/body/div[1]/div[1]/div[1]/div/div/header/div/div[2]/div/div/a/span[1]/span")).click();
 		//Thread.sleep(2000);
