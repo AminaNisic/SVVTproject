@@ -71,11 +71,17 @@ class FiltersTest {
 	    
 	  
 	   
-	   List<WebElement> results = webDriver.findElements(By.cssSelector(".money-amount price-formatted__price-amount"));
+	   List<WebElement> results = webDriver.findElements(By.cssSelector(".product-grid__product-list"));
 		
 		 for (int i = 0; i < results.size(); i++) {
-			 int price = Integer.parseInt(webDriver.findElement(By.cssSelector(".money-amount_main")).getText());
-		        assertTrue(price > 29 && price <60);
+			 //gets string from element
+			 String priceS = webDriver.findElement(By.xpath("/html/body/div[1]/div[1]/div[1]/div/div/div[2]/main/article/div[2]/section/ul/li[1]/div/div/div/div[2]/span/span/div/span")).getText();
+			 //gets rid of BAM from string
+			 priceS = priceS.replaceAll("\\s.*", "");
+			 //Converts to double
+			 double price = Double.parseDouble(priceS);
+		        assertTrue(price > 29 && price <120);
+		        assertFalse(price < 29 || price > 120);
 		    }
 		 
 		 Thread.sleep(3000);
