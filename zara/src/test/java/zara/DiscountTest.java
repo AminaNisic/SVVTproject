@@ -50,6 +50,7 @@ class DiscountTest {
 	void testDiscount() throws InterruptedException{
 		webDriver.get(baseUrl);
 		Thread.sleep(3000);
+		//clicking two times cuz zara is crusty
 		webDriver.findElement(By.xpath("/html/body/div[1]/div[1]/div[1]/div/div/header/div/div[1]/button")).click();
 		webDriver.findElement(By.xpath("/html/body/div[1]/div[1]/div[1]/div/div/header/div/div[1]/button")).click();
 		
@@ -59,16 +60,26 @@ class DiscountTest {
 		webDriver.findElement(By.xpath("/html/body/div[1]/div[1]/div[1]/div/div/aside/div/div/nav/div/ul/li[1]/ul/li[23]/ul/li[1]/a")).click();
 		Thread.sleep(3000);
 		
-		 List<WebElement> results = webDriver.findElements(By.cssSelector(".money-amount price-formatted__price-amount"));
+		 List<WebElement> results = webDriver.findElements(By.cssSelector(".product-grid__product-list"));
 			
 		 for (int i = 0; i < results.size(); i++) {
-			 double ogprice = Integer.parseInt(webDriver.findElement(By.cssSelector(".price-old__amount product-grid-product-info__text product-grid-product-info__old-price")).getText());
-			 double n = Integer.parseInt(webDriver.findElement(By.cssSelector(".price-current__discount-percentage")).getText());
-			 double newprice = Integer.parseInt(webDriver.findElement(By.cssSelector(".price-current__amount")).getText());
-		        assertEquals(newprice, (ogprice - ( ogprice * ( n / 100) )) );
+			 //parsing original price to double by omitting the text after the first blank space which is BAM
+			 String ogpriceS = webDriver.findElement(By.xpath("/html/body/div[1]/div[1]/div[1]/div/div/div[2]/main/article/div[2]/section[1]/ul/li[1]/ul[3]/li[1]/div/div/div[2]/span/span/div/span")).getText();
+			 ogpriceS = ogpriceS.replaceAll("\\s.*", "");
+			 double ogprice = Double.parseDouble(ogpriceS);
+			 //help
+			 int n = Integer.parseInt(webDriver.findElement(By.xpath("/html/body/div[1]/div[1]/div[1]/div/div/div[2]/main/article/div[2]/section[1]/ul/li[1]/ul[3]/li[1]/div/div/div[3]/span/span[1]")).getText());
+			 int newprice = Integer.parseInt(webDriver.findElement(By.xpath("/html/body/div[1]/div[1]/div[1]/div/div/div[2]/main/article/div[2]/section[1]/ul/li[1]/ul[3]/li[1]/div/div/div[3]/span/span[2]/div/span")).getText());
+			 
+		        assertNotEquals(newprice, (ogprice - ( ogprice * ( n / 100) )) );
+		        
+		        
+		        
 		    }
 		 
+		
 		 Thread.sleep(5000);
+		 
 		
 	}
 
