@@ -67,13 +67,19 @@ class DiscountTest {
 			 String ogpriceS = webDriver.findElement(By.xpath("/html/body/div[1]/div[1]/div[1]/div/div/div[2]/main/article/div[2]/section[1]/ul/li[1]/ul[3]/li[1]/div/div/div[2]/span/span/div/span")).getText();
 			 ogpriceS = ogpriceS.replaceAll("\\s.*", "");
 			 double ogprice = Double.parseDouble(ogpriceS);
-			 //help
-			 int n = Integer.parseInt(webDriver.findElement(By.xpath("/html/body/div[1]/div[1]/div[1]/div/div/div[2]/main/article/div[2]/section[1]/ul/li[1]/ul[3]/li[1]/div/div/div[3]/span/span[1]")).getText());
-			 int newprice = Integer.parseInt(webDriver.findElement(By.xpath("/html/body/div[1]/div[1]/div[1]/div/div/div[2]/main/article/div[2]/section[1]/ul/li[1]/ul[3]/li[1]/div/div/div[3]/span/span[2]/div/span")).getText());
 			 
-		        assertNotEquals(newprice, (ogprice - ( ogprice * ( n / 100) )) );
+			 //help
+			 String ns =webDriver.findElement(By.xpath("/html/body/div[1]/div[1]/div[1]/div/div/div[2]/main/article/div[2]/section[1]/ul/li[1]/ul[3]/li[1]/div/div/div[3]/span/span[1]")).getText();
+			 ns = ns.replaceAll("[^0-9]", "");
+			 double n = Double.parseDouble(ns);
+			 
+			 String newpriceS = webDriver.findElement(By.xpath("/html/body/div[1]/div[1]/div[1]/div/div/div[2]/main/article/div[2]/section[1]/ul/li[1]/ul[3]/li[1]/div/div/div[3]/span/span[2]/div/span")).getText();
+			 newpriceS = newpriceS.replaceAll("\\s.*", "");
+			 double newprice = Double.parseDouble(newpriceS);
+			 
+		        assertEquals(newprice, (ogprice - ( ogprice * ( n / 100) )) );
 		        
-		        
+		      //oh?? zara ??  
 		        
 		    }
 		 
