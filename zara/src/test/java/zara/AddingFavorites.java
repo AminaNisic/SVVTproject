@@ -32,7 +32,7 @@ class AddingFavorites {
 		
 		
 		
-		 //PROVJERI JEL IZBACENO IZ FAVORITEA PRIJE TESTA
+		 
 	}
 
 	@AfterAll
