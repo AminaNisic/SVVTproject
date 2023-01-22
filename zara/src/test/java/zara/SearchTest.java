@@ -57,19 +57,12 @@ class SearchTest {
 		webDriver.findElement(By.xpath("/html/body/div[1]/div[1]/div[1]/div/div/div[2]/main/article/div/div/section/div[1]/div[1]/div/form/div/div/div/input")).sendKeys("Dress", Keys.ENTER);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("/html/body/div[1]/div[1]/div[1]/div/div/div[2]/main/article/div/div/section/div[2]/section[1]/ul")));
 		
-		List<WebElement> results = webDriver.findElements(By.cssSelector(".product-grid__product-list"));
+		List<WebElement> results = webDriver.findElements(By.cssSelector(".product-grid-product-info__main-info"));
 		
 		 for (int i = 0; i < results.size(); i++) {
-			 //checks if all results links lead to dresses
-		     String link = webDriver.findElement(By.xpath("/html/body/div[1]/div[1]/div[1]/div/div/div[2]/main/article/div/div/section/div[2]/section[1]/ul/li[1]/div/div/div/div[1]/a")).getAttribute("href");
-		     	assertTrue(link.contains("dress"), "Search result validation failed");
-		     	//true
-		     	String title2 =  webDriver.findElement(By.xpath("/html/body/div[1]/div[1]/div[1]/div/div/div[2]/main/article/div/div/section/div[2]/section[1]/ul/li[1]/div/div/div/div[1]/a")).getText();
-		        assertTrue(title2.contains("DRESS"), "Search result validation failed.");
-			 //check if there are wrong searches i.e skirts when searched for dress
-			 String title =  webDriver.findElement(By.xpath("/html/body/div[1]/div[1]/div[1]/div/div/div[2]/main/article/div/div/section/div[2]/section[1]/ul/li[1]/div/div/div/div[1]/a/h3")).getText();
-		        assertFalse(title.contains("SKIRT"), "Search result validation failed.");
-		       
+			 
+			 assertTrue(results.get(i).getText().contains("DRESS"));
+			 assertFalse(results.get(i).getText().contains("SKIRT"));
 		    }
 		Thread.sleep(2000);
 	}

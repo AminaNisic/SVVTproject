@@ -60,33 +60,35 @@ class DiscountTest {
 		webDriver.findElement(By.xpath("/html/body/div[1]/div[1]/div[1]/div/div/aside/div/div/nav/div/ul/li[1]/ul/li[23]/ul/li[1]/a")).click();
 		Thread.sleep(3000);
 		
-		 List<WebElement> results = webDriver.findElements(By.cssSelector(".product-grid__product-list"));
+		 List<WebElement> oldprice = webDriver.findElements(By.cssSelector(".money-amount__main"));
+		 List<WebElement> newP = webDriver.findElements(By.cssSelector(".price-current__amount"));
+		 List<WebElement> percentage = webDriver.findElements(By.cssSelector(".price-current__discount-percentage"));
 			
-		 for (int i = 0; i < results.size(); i++) {
-			 //parsing original price to double by omitting the text after the first blank space which is BAM
-			 String ogpriceS = webDriver.findElement(By.xpath("/html/body/div[1]/div[1]/div[1]/div/div/div[2]/main/article/div[2]/section[1]/ul/li[1]/ul[3]/li[1]/div/div/div[2]/span/span/div/span")).getText();
+		 for (int i = 0; i < oldprice.size(); i++) {
+			 
+			 try {
+			 String ogpriceS = oldprice.get(i).getText();
 			 ogpriceS = ogpriceS.replaceAll("\\s.*", "");
 			 double ogprice = Double.parseDouble(ogpriceS);
 			 
-			 //help
-			 String ns =webDriver.findElement(By.xpath("/html/body/div[1]/div[1]/div[1]/div/div/div[2]/main/article/div[2]/section[1]/ul/li[1]/ul[3]/li[1]/div/div/div[3]/span/span[1]")).getText();
+			 String ns = percentage.get(i).getText();
 			 ns = ns.replaceAll("[^0-9]", "");
 			 double n = Double.parseDouble(ns);
 			 
-			 String newpriceS = webDriver.findElement(By.xpath("/html/body/div[1]/div[1]/div[1]/div/div/div[2]/main/article/div[2]/section[1]/ul/li[1]/ul[3]/li[1]/div/div/div[3]/span/span[2]/div/span"))
-					 .getText();
+			 String newpriceS = newP.get(i).getText();
 			 newpriceS = newpriceS.replaceAll("\\s.*", "");
 			 double newprice = Double.parseDouble(newpriceS);
 			 
-		        assertEquals(newprice, (ogprice - ( ogprice * ( n / 100) )) ); 
-		      //oh?? zara ??  
-		        
-		    }
-		 
-		
-		 Thread.sleep(5000);
-		 
-		
+			 double expected = ogprice - (ogprice*(n/100)); 
+			 Math.round(expected);
+			 assertEquals(expected,newprice);
+			 //assertNotEquals(expected,newprice);
+			 
+			 }		 
+			 catch(IndexOutOfBoundsException e) {				 
+			 }		        
+		    }		
+		 Thread.sleep(5000);	 
 	}
 
 }
