@@ -73,12 +73,12 @@ class DiscountTest {
 			 ns = ns.replaceAll("[^0-9]", "");
 			 double n = Double.parseDouble(ns);
 			 
-			 String newpriceS = webDriver.findElement(By.xpath("/html/body/div[1]/div[1]/div[1]/div/div/div[2]/main/article/div[2]/section[1]/ul/li[1]/ul[3]/li[1]/div/div/div[3]/span/span[2]/div/span")).getText();
+			 String newpriceS = webDriver.findElement(By.xpath("/html/body/div[1]/div[1]/div[1]/div/div/div[2]/main/article/div[2]/section[1]/ul/li[1]/ul[3]/li[1]/div/div/div[3]/span/span[2]/div/span"))
+					 .getText();
 			 newpriceS = newpriceS.replaceAll("\\s.*", "");
 			 double newprice = Double.parseDouble(newpriceS);
 			 
-		        assertEquals(newprice, (ogprice - ( ogprice * ( n / 100) )) );
-		        
+		        assertEquals(newprice, (ogprice - ( ogprice * ( n / 100) )) ); 
 		      //oh?? zara ??  
 		        
 		    }

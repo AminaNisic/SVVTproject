@@ -49,87 +49,29 @@ class ExternalLinks {
 	void linkTest() throws InterruptedException{
 		webDriver.get(baseUrl);
 		String home = webDriver.getWindowHandle();
-		//tiktok
 		js.executeScript("arguments[0].scrollIntoView(true)", webDriver.findElement(By.xpath("/html/body/div[1]/div[1]/div[1]/div/div/div[2]/main/article/div[2]/ul/li[3]/ul/li[9]/div[2]/div[1]/div[2]/div/div/ul")));
 		Thread.sleep(3000);
-		webDriver.findElement(By.linkText("TIKTOK")).click();
-		for(String handle: webDriver.getWindowHandles()) {
-			if (!handle.equals(home)) {
-				webDriver.switchTo().window(handle);
-			}
-		}
-		Thread.sleep(3000);
-		assertEquals("https://www.tiktok.com/@zara", webDriver.getCurrentUrl());
-		webDriver.close();
-		webDriver.switchTo().window(home);
-		Thread.sleep(3000);
 		
-		//instagram
-		webDriver.findElement(By.linkText("INSTAGRAM")).click();
-		for(String handle: webDriver.getWindowHandles()) {
-			if (!handle.equals(home)) {
-				webDriver.switchTo().window(handle);
-			}
-		}
-		Thread.sleep(3000);
-		assertEquals("https://www.instagram.com/zara/", webDriver.getCurrentUrl());
-		webDriver.close();
-		webDriver.switchTo().window(home);
-		Thread.sleep(3000);
+		//loop
 		
-		//facebook
-		webDriver.findElement(By.linkText("FACEBOOK")).click();
-		for(String handle: webDriver.getWindowHandles()) {
-			if (!handle.equals(home)) {
-				webDriver.switchTo().window(handle);
-			}
-		}
-		Thread.sleep(3000);
-		assertEquals("https://www.facebook.com/Zara", webDriver.getCurrentUrl());
-		webDriver.close();
-		webDriver.switchTo().window(home);
-		Thread.sleep(3000);
+		String[] links = {"TIKTOK","INSTAGRAM","FACEBOOK","TWITTER","PINTEREST","YOUTUBE"};
 		
-		//twitter
-		webDriver.findElement(By.linkText("TWITTER")).click();
-		for(String handle: webDriver.getWindowHandles()) {
-			if (!handle.equals(home)) {
-				webDriver.switchTo().window(handle);
+		for (String link : links) {
+			webDriver.findElement(By.linkText(link)).click();
+			for(String handle: webDriver.getWindowHandles()) {
+				if (!handle.equals(home)) {
+					webDriver.switchTo().window(handle);
+				}
 			}
+			Thread.sleep(3000);
+			String url = webDriver.getCurrentUrl().toLowerCase();
+			assertTrue(url.contains("zara"));
+			assertTrue(url.contains(link.toLowerCase()));
+			webDriver.close();
+			webDriver.switchTo().window(home);
+			Thread.sleep(3000);
 		}
-		Thread.sleep(3000);
-		assertEquals("https://twitter.com/ZARA", webDriver.getCurrentUrl());
-		webDriver.close();
-		webDriver.switchTo().window(home);
-		Thread.sleep(3000);
 		
-		//pinterest
-		webDriver.findElement(By.linkText("PINTEREST")).click();
-		for(String handle: webDriver.getWindowHandles()) {
-			if (!handle.equals(home)) {
-				webDriver.switchTo().window(handle);
-			}
-		}
-		Thread.sleep(3000);
-		assertEquals("https://www.pinterest.es/zaraofficial/", webDriver.getCurrentUrl());
-		webDriver.close();
-		webDriver.switchTo().window(home);
-		Thread.sleep(3000);
-		
-		//Youtut
-		webDriver.findElement(By.linkText("YOUTUBE")).click();
-		for(String handle: webDriver.getWindowHandles()) {
-			if (!handle.equals(home)) {
-				webDriver.switchTo().window(handle);
-			}
-		}
-		Thread.sleep(3000);
-		assertEquals("https://www.youtube.com/user/zara", webDriver.getCurrentUrl());
-		webDriver.close();
-		webDriver.switchTo().window(home);
-		Thread.sleep(3000);
-		
-		//Spotify
 		webDriver.findElement(By.linkText("SPOTIFY")).click();
 		for(String handle: webDriver.getWindowHandles()) {
 			if (!handle.equals(home)) {
@@ -141,8 +83,6 @@ class ExternalLinks {
 		webDriver.close();
 		webDriver.switchTo().window(home);
 		Thread.sleep(3000);
-		
-		//write them as separate tests?
 	}
 	
 

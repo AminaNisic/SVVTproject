@@ -51,7 +51,6 @@ class FiltersTest {
 		Thread.sleep(1000);
 		webDriver.findElement(By.xpath("/html/body/div[1]/div[1]/div[1]/div/div/header/div/div[1]/button")).click();
 		webDriver.findElement(By.xpath("/html/body/div[1]/div[1]/div[1]/div/div/header/div/div[1]/button")).click();
-		//uradit double click
 		//zara's nav button doesnt work properly, must be clicked at least two times to open the menu
 		//some of these need wait cuz zara is crusty
 		webDriver.findElement(By.xpath("/html/body/div[1]/div[1]/div[1]/div/div/aside/div/div/nav/div/ul/li[1]/ul/li[7]/a")).click();
