@@ -46,7 +46,7 @@ class InStoreAvailability {
 		webDriver.findElement(By.xpath("/html/body/div[1]/div[1]/div[1]/div/div/header/div[2]/div/div/div[1]/button")).click();
 		Thread.sleep(1000);
 		//select a product
-		webDriver.findElement(By.xpath("/html/body/div[1]/div[1]/div[1]/div/div/div[2]/main/article/div[2]/section[1]/ul/li[4]/div/div/div/div[1]/a/h3")).click();
+		webDriver.findElement(By.xpath("/html/body/div[1]/div[1]/div[1]/div/div/div[2]/main/article/div[2]/section[1]/ul/li[13]/div/div/div/div[1]/a/h3")).click();
 		Thread.sleep(1000);
 		//check in-store availability
 		webDriver.findElement(By.xpath("/html/body/div[1]/div[1]/div[1]/div/div/div[2]/main/article/div[2]/div/div[2]/div[2]/ul/li[2]/button")).click();
