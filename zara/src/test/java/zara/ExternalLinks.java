@@ -37,7 +37,7 @@ class ExternalLinks {
 		webDriver.quit();
 	}
 
-	@BeforeEach
+	@BeforeEach 
 	void setUp() throws Exception {
 	}
 

@@ -77,7 +77,7 @@ class FiltersTest {
 			 //Converts to double
 			 double price = Double.parseDouble(priceS);
 		        assertTrue(price > 29 && price <90);
-		        assertFalse(price < 29 || price > 90);
+		        assertFalse(price < 29 || price > 90); 
 		    }
 		 
 		 Thread.sleep(3000);

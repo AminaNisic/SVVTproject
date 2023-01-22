@@ -39,7 +39,7 @@ class NavTest {
 	}
 
 	@AfterEach
-	void tearDown() throws Exception {
+	void tearDown() throws Exception { 
 	}
 
 	@Test

@@ -82,7 +82,7 @@ class DiscountTest {
 			 double expected = ogprice - (ogprice*(n/100)); 
 			 Math.round(expected);
 			 assertEquals(expected,newprice);
-			 //assertNotEquals(expected,newprice);
+			 //assertNotEquals(expected,newprice); 
 			 
 			 }		 
 			 catch(IndexOutOfBoundsException e) {				 

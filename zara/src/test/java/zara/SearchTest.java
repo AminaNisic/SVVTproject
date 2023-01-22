@@ -50,7 +50,7 @@ class SearchTest {
 	}
 
 	@Test
-	void testSearch() throws InterruptedException {
+	void testSearch() throws InterruptedException { 
 		webDriver.get(baseUrl);
 		Thread.sleep(2000);
 		webDriver.findElement(By.xpath("/html/body/div[1]/div[1]/div[1]/div/div/header/div/div[2]/div/div/a/span[1]/span")).click();
